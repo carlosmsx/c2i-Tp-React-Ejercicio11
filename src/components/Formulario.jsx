@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import ListaNoticias from './ListaNoticias';
-import { Form, Button } from 'react-bootstrap';
-import Swal from 'sweetalert2';
+import { Form } from 'react-bootstrap';
 import Spinner from './Spinner'
 
 const Formulario = () => {
