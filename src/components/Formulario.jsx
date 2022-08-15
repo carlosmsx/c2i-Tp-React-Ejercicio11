@@ -13,16 +13,15 @@ const Formulario = () => {
 
     const consultarAPI = async (category)=>{
         setMostrarSpinner(true);
-        console.log(category)
         const respuesta = await fetch(`https://newsapi.org/v2/top-headlines/sources?category=${category}&apiKey=${apiKey}`);
         const dato = await respuesta.json();
         setListaNoticias(dato.sources);
-        console.log(listaNoticias);
         setMostrarSpinner(false);
     }
 
     const change = (event)=>{
-        consultarAPI(event.target.value);
+        if (event.target.value.length>0)
+            consultarAPI(event.target.value);
     }
 
     return (
