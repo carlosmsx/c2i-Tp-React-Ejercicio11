@@ -1,11 +1,15 @@
 import React from 'react';
 import { Table, Button } from 'react-bootstrap';
+import Noticia from './Noticia';
 
 const ListaNoticias = (props) => {
-    const tareas=props.listaTareas;
     return (
-        <div>
-            
+        <div className="container-fluid">
+            <div className="row justify-content-start">
+                {
+                    props.listaNoticias.map((item,posicion)=><Noticia noticia={item} key={posicion}/>)            
+                }
+            </div>
         </div>
     );
 };

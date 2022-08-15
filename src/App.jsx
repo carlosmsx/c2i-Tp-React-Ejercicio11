@@ -4,7 +4,7 @@ import Titulo from './components/Titulo';
 
 const App = () => {
     return (
-        <div className="container-fluid">
+        <div>
             <Titulo/>
             <Formulario/>
         </div>

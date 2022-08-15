@@ -5,31 +5,28 @@ import Swal from 'sweetalert2';
 import Spinner from './Spinner'
 
 const Formulario = () => {
-    //https://newsapi.org/
-    //b73be4b9b9ff4a54b30c97e0f4f98766
-    //https://newsapi.org/v2/top-headlines/sources?category=science&apiKey=b73be4b9b9ff4a54b30c97e0f4f98766
-    //https://newsapi.org/v2/top-headlines/sources?category=science&apiKey=b73be4b9b9ff4a54b30c97e0f4f98766
     const apiKey = 'b73be4b9b9ff4a54b30c97e0f4f98766';
+    //https://newsapi.org/v2/top-headlines/sources?category=general&apiKey=b73be4b9b9ff4a54b30c97e0f4f98766
 
     const [listaNoticias, setListaNoticias] = useState([]);
     const [mostrarSpinner, setMostrarSpinner] = useState(false);
 
     const consultarAPI = async (category)=>{
-        //setMostratSpinner(true);
+        setMostrarSpinner(true);
+        console.log(category)
         const respuesta = await fetch(`https://newsapi.org/v2/top-headlines/sources?category=${category}&apiKey=${apiKey}`);
         const dato = await respuesta.json();
-        setListaNoticias(dato);
-        //setPersonaje(dato[0]);
+        setListaNoticias(dato.sources);
+        console.log(listaNoticias);
+        setMostrarSpinner(false);
     }
 
     const change = (event)=>{
         consultarAPI(event.target.value);
     }
 
-    const mostrarComponente = (mostrarSpinner===true)?<Spinner/>:<ListaNoticias listaNoticias={listaNoticias}/>;
-
     return (
-        <div className="pt-4">
+        <div className="container-fluid pt-4">
             <Form>
                 <Form.Group className="mb-3 d-flex" controlId="formCategoria">
                     <Form.Label>Buscar por categoría</Form.Label>
@@ -46,7 +43,7 @@ const Formulario = () => {
                 </Form.Group>
             </Form>
             <hr/>
-            {mostrarComponente}
+            {(mostrarSpinner===true)?<Spinner/>:<ListaNoticias listaNoticias={listaNoticias}/>}
         </div>
     );
 };
